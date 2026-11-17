@@ -1,4 +1,4 @@
-# Répartition des tâches — Projet BDD bornes de recharge
+# Répartition des tâches — Projet BDD UrbanWatt
 
 ## Équipe
 
