@@ -38,3 +38,30 @@ ORDER BY sessions_recharge.debut_session DESC;
 -- Question 4 : 
 -- Lister les clients n’ayant jamais eu de session annulée ou
 -- interrompue, y compris ceux qui n’ont effectué aucune recharge
+SELECT clients.id_client, prenom, nom
+FROM "Urbanwatt".clients 
+WHERE clients.id_client NOT IN (
+    SELECT DISTINCT vehicules.id_client
+    FROM "Urbanwatt".vehicules 
+    JOIN "Urbanwatt".sessions_recharge ON sessions_recharge.id_vehicule = vehicules.id_vehicule
+    WHERE sessions_recharge.statut = 'interrompue' 
+	or sessions_recharge.statut = 'annulee'
+)
+ORDER BY clients.id_client;
+
+-- Question 5 : 
+-- Afficher les sessions terminées dans la station ST-LYO, triées par
+-- énergie délivrée de la plus élevée à la plus faible.
+
+SET search_path TO "Urbanwatt";
+
+SELECT id_session, energie_kwh, sessions_recharge.statut, code_station from sessions_recharge
+join bornes on bornes.id_borne = sessions_recharge.id_borne
+Join stations on stations.id_station = bornes.id_station 
+where stations.code_station = 'ST-LYO' 
+AND sessions_recharge.statut = 'terminee'
+ORDER BY energie_kwh DESC; 
+
+-- Question 6
+-- Présenter, pour le client n° 10, toutes ses sessions avec le véhicule
+-- concerné, la station, la date et le statut.
