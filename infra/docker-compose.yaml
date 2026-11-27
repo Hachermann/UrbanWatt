@@ -1,0 +1,63 @@
+# Projet UrbanWatt : PostgreSQL + pgAdmin
+#
+# Lancer, depuis le dossier infra :  docker compose up -d
+# Puis ouvrir pgAdmin : http://localhost:5050
+#
+# Au premier démarrage (base vide), PostgreSQL exécute automatiquement les
+# scripts de sql/init dans l'ordre : création des tables, chargement des
+# CSV de sql/data, puis création des index. Compter environ une minute.
+#
+# Arrêter (données conservées) :       docker compose down
+# Repartir de zéro (recharger les CSV) : docker compose down -v
+#                                        puis docker compose up -d
+#
+# Les identifiants sont lus dans infra/.env (ignoré par Git).
+# Modèle à copier : infra/.env.example
+
+name: UrbanWatt
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: UrbanWatt-Postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?definir POSTGRES_PASSWORD dans infra/.env}
+      POSTGRES_DB: ${POSTGRES_DB:-UrbanWatt}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      # PostgreSQL 18 et plus : monter /var/lib/postgresql (pas /var/lib/postgresql/data)
+      - pgdata:/var/lib/postgresql
+      # Scripts exécutés au premier démarrage uniquement, quand la base est vide
+      - ../sql/init:/docker-entrypoint-initdb.d:ro
+      # CSV du projet, lus par sql/init/02_charger_csv_postgresql.sql
+      - ../sql/data:/data:ro
+    healthcheck:
+      # -h localhost : la base n'est déclarée prête qu'une fois les scripts
+      # du premier démarrage terminés (pendant ce temps, elle n'écoute pas le réseau)
+      test: ["CMD-SHELL", "pg_isready -h localhost -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-UrbanWatt}"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: urbanwatt-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@example.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:?definir PGADMIN_PASSWORD dans infra/.env}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    volumes:
+      # Conserve la configuration de pgAdmin entre deux redémarrages
+      - pgadmin_data:/var/lib/pgadmin
+      # Serveur « UrbanWatt » déjà enregistré au premier lancement de pgAdmin
+      - ./pgadmin/servers.json:/pgadmin4/servers.json:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  pgadmin_data:

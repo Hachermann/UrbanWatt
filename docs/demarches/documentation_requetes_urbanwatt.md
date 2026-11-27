@@ -20,13 +20,15 @@ Les résultats indiqués (nombre de lignes, valeurs) ont été obtenus en exécu
 
 ### 1.1 Exécution
 
-Toutes les requêtes supposent que le schéma par défaut est `"Urbanwatt"`. Exécutez cette ligne une fois en tête du Query Tool de pgAdmin :
+Les tables sont dans le schéma `urbanwatt`, qui est le schéma par défaut de la base `UrbanWatt` : ce réglage est fait par `sql/init/01_UrbanWatt.sql` au premier démarrage Docker (voir `installation_pgadmin_postgres.md`). Dans le Query Tool de pgAdmin, les requêtes s'exécutent donc telles quelles.
+
+Sur une base où ce réglage n'existe pas, exécutez d'abord cette ligne :
 
 ```sql
-SET search_path TO "Urbanwatt";
+SET search_path TO urbanwatt;
 ```
 
-Sans elle, il faut préfixer chaque table (`"Urbanwatt".clients`). Les guillemets sont obligatoires, car le nom du schéma contient une majuscule : sans guillemets, PostgreSQL le convertit en minuscules et cherche `urbanwatt`.
+Sans elle, il faut préfixer chaque table (`urbanwatt.clients`). Le nom est en minuscules, il n'a donc pas besoin de guillemets.
 
 ### 1.2 Tables et volumes
 
