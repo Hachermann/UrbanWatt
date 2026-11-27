@@ -44,16 +44,16 @@
 - [x] importer les 9 fichiers csv dans pgadmin
 - [x] créer les tables dans l'ordre
 - [x] vérifier le nombre de lignes
-- [ ] créer au moins deux index
+- [x] créer au moins deux index
 
 ### T05 · Écrire les requêtes SQL
 - **Responsable :** Alexis
 - **Statut :** En cours <!-- À faire · En cours · Bloqué · Terminé -->
 - **Pour le :** JJ/MM
 - **Détails :** requêtes demandées par l'énoncé (jointures, agrégats, sous-requêtes…).
-- [ ] 1-15 : requêtes obligatoire
-- [ ] 16-24 : 5 questions au choix a traiter obligatoirement
-- [ ] 25-31 : Facultatif => approfondissement
+- [x] 1-15 : requêtes obligatoire
+- [x] 16-24 : 5 questions au choix a traiter obligatoirement
+- [x] 25-31 : Facultatif => approfondissement
 
 ### T06 · Vérifier l'intégrité des données
 - **Responsable :** Pierre
@@ -71,7 +71,16 @@
 - [ ] Comptes par table
 - [ ] Sessions annulées sans paiement
 
-### T08 · Rédiger le rapport
+### T08 · Sécurités et Sauvegardes
+- **Responsable :** Alexis
+- **Statut :** À faire <!-- À faire · En cours · Bloqué · Terminé -->
+- **Pour le :** JJ/MM
+- **Détails :** Les secrets restent hors de Git et vous fournissez un .env.example . Faire une sauvegarde avec pg_dump , la
+restaurer dans une base de test séparée, puis comparer le nombre de lignes avant et après.
+- [ ] Comptes par table
+- [ ] Sessions annulées sans paiement
+
+### T09 · Rédiger le rapport
 - **Responsable :** Pierre, ALexis ?
 - **Statut :** À faire <!-- À faire · En cours · Bloqué · Terminé -->
 - **Pour le :** JJ/MM
@@ -79,7 +88,7 @@
 - [ ] Plan
 - [ ] Relecture
 
-### T09 · Préparer la soutenance
+### T10 · Préparer la soutenance
 - **Responsable :** Pierre, Alexis
 - **Statut :** À faire <!-- À faire · En cours · Bloqué · Terminé -->
 - **Pour le :** JJ/MM
