@@ -63,15 +63,7 @@
 - [ ] Comptes par table
 - [ ] Sessions annulées sans paiement
 
-### T07 · Vérifier l'intégrité des données
-- **Responsable :** Pierre
-- **Statut :** À faire <!-- À faire · En cours · Bloqué · Terminé -->
-- **Pour le :** JJ/MM
-- **Détails :** contrôler les comptes, les valeurs NULL et les dates incohérentes.
-- [ ] Comptes par table
-- [ ] Sessions annulées sans paiement
-
-### T08 · Sécurités et Sauvegardes
+### T07 · Sécurités et Sauvegardes
 - **Responsable :** Alexis
 - **Statut :** À faire <!-- À faire · En cours · Bloqué · Terminé -->
 - **Pour le :** JJ/MM
@@ -80,7 +72,7 @@ restaurer dans une base de test séparée, puis comparer le nombre de lignes ava
 - [ ] Comptes par table
 - [ ] Sessions annulées sans paiement
 
-### T09 · Rédiger le rapport
+### T08 · Rédiger le rapport
 - **Responsable :** Pierre, ALexis ?
 - **Statut :** À faire <!-- À faire · En cours · Bloqué · Terminé -->
 - **Pour le :** JJ/MM
@@ -88,7 +80,7 @@ restaurer dans une base de test séparée, puis comparer le nombre de lignes ava
 - [ ] Plan
 - [ ] Relecture
 
-### T10 · Préparer la soutenance
+### T09 · Préparer la soutenance
 - **Responsable :** Pierre, Alexis
 - **Statut :** À faire <!-- À faire · En cours · Bloqué · Terminé -->
 - **Pour le :** JJ/MM
